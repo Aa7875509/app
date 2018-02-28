@@ -1,0 +1,16 @@
+{
+  "index.html": {
+    "href": "index.html",
+    "resources": [
+      "static/commons/css/mui.min.css",
+      "static/commons/css/style.min.css",
+      "static/commons/css/mui.picker.min.css",
+      "static/commons/css/best.css",
+      "static/commons/js/mui.min.js",
+      "static/commons/js/fastclick.js",
+      "static/commons/js/mui.picker.min.js"
+    ],
+    "refer": [],
+    "priority": 0
+  }
+}

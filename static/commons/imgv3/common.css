@@ -1,0 +1,26 @@
+
+/* 泓创颜色 */
+ 
+.bjzhuse{
+    background:#66bb6a !important; /*背景主色  */
+   
+}
+.bjfuse1{
+    background:#c8e6c9 !important; /*背景辅色1  */
+}
+.bjfuse2{
+    background:#4caf50 !important;/*背景辅色2  */
+}
+.ztzhuse{
+  color:#66bb6a !important;  /*字体主色  */
+}
+.ztzhusexian{
+    color:#66bb6a !important;  /*字体主色  */
+    border-bottom: 2px solid #66bb6a;
+  }
+.ztfuse1{
+    color:#c8e6c9 !important; /*字体辅色1  */
+}
+.ztfuse2{
+    color:#4caf50 !important;/*字体辅色2 */
+}

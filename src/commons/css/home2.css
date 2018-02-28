@@ -1,0 +1,60 @@
+/* .fenxiang1{
+	display: none;
+}
+.fenxiang2{
+	display: none;
+}
+.fenxiang3{
+	display: none;
+} */
+
+.home2{
+	padding-top: 45px;
+}
+
+.myyingyong{
+	display: inline-block;
+	width: 7.5rem;
+	height: 3.1rem;
+	line-height: 3.1rem;
+	color: #646464;
+
+}
+.home2-indes{
+	border-top: 1rem solid #EFEFF4 !important;
+    color: #646464;
+}
+.mui-active .myyingyong{
+	color:#7e57c2;
+	border-bottom: 2px solid #7e57c2;
+
+}
+#cardOperation{
+	float: right;
+	line-height: 2.838rem;
+	margin-right:0.967rem;
+}
+.home-2-1{
+	padding-left: 0.967rem;
+	font-size: 0.967rem;
+	height:2.838rem;
+	line-height: 2.838rem;
+	border-bottom:1px solid #EFEFF4;
+}
+.home-2-2{
+	height: 5.2rem;
+	border-bottom:1px solid #EFEFF4;
+	display: -webkit-box;
+	-webkit-box-pack:justify;
+	padding: 0 0.967rem;
+}
+.home-2-2 div{
+	height: 4.2rem;
+	padding-top: 1.3rem;
+
+}
+.home-2-2 div span{
+	display:block;
+	text-align:center ;
+
+}
