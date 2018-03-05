@@ -1,9 +1,11 @@
-﻿<template>
+<template>
 	<div class="loading">
 		<div class="mui-content">
-			<div class="content_img">
-				<img src="../../../static/commons/img/mylogo.png" alt="">
-			</div>
+			<header class="mui-bar mui-bar-nav">
+                <a @click="fcard" class="mui-icon mui-icon-left-nav mui-pull-left"></a>
+                <h1 class="mui-title">注册</h1>
+            </header>
+            <div style="height:44px;"></div>
 			<form id='login-form' class="mui-input-group">
 				<div class="mui-input-row">
 					<label>账号</label>
@@ -13,23 +15,19 @@
 					<label>密码</label>
 					<input id='password' v-model="ruleForm.password" type="password" class="mui-input-clear mui-input" placeholder="请输入密码">
 				</div>
+                <div class="mui-input-row">
+					<label>确认密码</label>
+					<input id='password' v-model="ruleForm.password1" type="password" class="mui-input-clear mui-input" placeholder="请输入密码">
+				</div>
 				<div class="mui-input-row">
 					<label>验证码</label>
                     <input  type="text" v-model="ruleForm.passimg" class="mui-input-clear mui-input" maxlength="4" placeholder="请输入验证码">
 					<span class="input_img" @click="myurlimg()" :style="'background:url(data:image/png;base64,'+urlimg+') no-repeat;background-size: 100% 100%;'"></span>
 				</div>
-				<div class="mui-table-view-cell">
-					是否自动登陆
-					<div @click="switchs=!switchs" :class="switchs?'mui-switch mui-active':'mui-switch'">
-						<div class="mui-switch-handle"></div>
-					</div>
-				</div>
 			</form>
 			
 			<div class="mui-content-padded">
-				<button  class="mui-btn mui-btn-block mui-btn-danger" @click="submitForm">登录</button>
-				<div class="link-area"><a id='reg' @click="resetForm">注册账号</a> <!--<span class="spliter"> |</span> <a id='forgetPassword'>忘记密码</a> -->
-				</div>
+				<button  class="mui-btn mui-btn-block mui-btn-danger" @click="submitForm">确 定</button>
 			</div>
 			<div class="mui-content-padded oauth-area">
 
@@ -48,6 +46,7 @@
 				ruleForm: {
 					name: '',
 					password:'',
+					password1:'',
 					passimg:''
 				},
 			};
@@ -88,7 +87,9 @@
 			
 		},
 		methods: {
-		    
+		    fcard(){
+                 this.$router.push('/')
+            },
         submitForm() {
 			
             const v = this;
@@ -103,6 +104,9 @@
 			}
 			if(v.ruleForm.password.length<2){
 				 return mui.toast('密码长度应大于两位',{ duration:'long', type:'div' })
+            }
+            if(v.ruleForm.password!=v.ruleForm.password1){
+				 return mui.toast('两次输入密码不一致！')
 			}
 			if(!v.ruleForm.passimg){
 				return mui.toast('验证码不能为空',{ duration:'long', type:'div' })
@@ -127,12 +131,12 @@
 				}
 			})
         },
-         ajaxmy(){
+          ajaxmy(){
             const v = this;
-            var p =md5(v.ruleForm.password);
+            var p =md5(v.ruleForm.password)
             v.$ajax({
                 data:{
-                    s: "App.User.Login",       // 待请求的接口服务名称
+                    s: "App.User.Register",       // 待请求的接口服务名称
                     username: v.ruleForm.name,
                     password: p,        // 更多接口参数
                     callback: "onCallback"  ,// 客户端的JS回调函数
@@ -140,19 +144,15 @@
                 done:function(r){
                     if(r.ret=='200'){
                         if(r.data.err_code=='0'){
-                            localStorage.setItem('uuid',r.data.uuid);
-							localStorage.setItem('token',r.data.token);
-							if(v.switchs){
-								localStorage.setItem('zidong','12');
-							}else{
-                                localStorage.setItem('zidong','');
-							}
-                            v.$router.push('/menus')
+                            var btnArray = ['确认'];
+                            mui.alert('注册成功！', '提示！', btnArray, function(e) {
+                                v.$router.push('/')
+                            });
                         }else{
-                            mui.toast(r.data.err_msg,{ duration:'long', type:'div' })
+                            mui.toast(r.data.err_msg);
                         }
                     }else{
-                            mui.toast(r.msg,{ duration:'long', type:'div' })
+                            mui.toast(r.msg);
                     }
                 }
             })

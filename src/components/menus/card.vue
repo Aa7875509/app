@@ -1,454 +1,261 @@
 <template>
-	<div>
-		<my-header :title="'卡包'" :right="'添加卡片'" @rightButton="cardAdd" :leftDisplay="false" :back="false">
-		</my-header>
-		<div class="mui-content mui-scroll-wrapper">
-			<div class="mui-scroll">
-				<div id="sliderSegmentedControl">
-					<div class="muicontro" @click="asdada">
-						<span class="myyingyong " :class="xianshi==true?'ztzhuse ztzhusexian':''">
-	                        信用卡
-	                    </span>
-					</div>
-					<div class="muicontro" @click="xosap">
-						<span class="myyingyong " :class="xianshi==true?'':'ztzhuse ztzhusexian'">
-							储蓄卡
-						</span>
-					</div>
-				</div>
-				<div>
-					<div v-show="xianshi" id="ysjdsdsttt">
-						<ul class="mui-table-view" id="yyyyyy">
-							<li class="mui-table-view-cell"  v-for="(item,index) in xinyongcadr" :key="index">
-								<div class="mui-slider-right mui-disabled">
-									<a class="mui-btn zise bjzhuse" @click="bianji(item.creditCardId)">编辑</a>
-									<a class="mui-btn mui-btn-red" @click="isDel(item,$event)">删除</a>
-								</div>
-								<div class="mui-slider-handle">
-									<div class="home2-indes" @click="cardplan(item.creditCardId,item.status)">
-										<div class="home-2-1" >
-											<span>{{item.bankName}}</span>
-											<span>{{item.cardNo}}</span>
-											<span class="mui-icon mui-icon-arrowright cardOperations"></span>
-										</div>
-										<div class="home-2-2">
-											<div>
-												<span>{{item.repaymentAt}}号</span><span>还款时间</span>
-											</div>
-											<div>
-												<span>{{item.repaymentAmount}}</span><span>还款金额</span>
-											</div>
-											<div>
-												<span v-if="item.status=='0'" style="color:#ef5350;font-size:.32rem;">不匹配</span>
-												<span v-if="item.status=='1'" style="color:#42a5f5;font-size:.32rem;">进行中</span>
-												<span v-if="item.status=='2'" style="color:#ffca28;font-size:.32rem;">创建状态</span>
-												<span v-if="item.status=='3'" style="color:#66bb6a;font-size:.32rem;">已完成</span>
-												<span style="color:#b4b4b4;font-size:.22rem;">还款状态</span>
-											</div>
-										</div>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-					<div class="mobile" v-show="!xianshi">
-						<div class="backs" :style="yansee(item.bankName)" v-for="(item,index) in chuxucadr" :key="index">
-							<span>{{item.bankName}}</span>
-							<span>{{item.cardNo}}</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
+	<div class="mui-content">
+		
+		<header class="mui-bar mui-bar-nav">
+		  <button @click="$router.push('/adddialog')" class="mui-btn mui-pull-left">
+		    添加
+		  </button>
+		  <button @click="zlodin" class="mui-btn mui-pull-right">
+		    退出登陆
+		  </button>
+		  <h1 class="mui-title">记事本</h1>
+		</header>
+		<div class="title" >
+            <div class="table">
+                <div class="table-head">
+                    <div class="table-head-cell">名字</div>
+                    <div class="table-head-cell">资料1</div>
+                    <div class="table-head-cell">资料2</div>
+                    <div class="table-head-cell">备注</div>
+                </div>
+				<div class="aout" id="shuzxonsd">
+					<ul class="mui-table-view " v-for="(item,index) in tableData3" :key="index">
+						<li class="mui-table-view-cell">
+							<div  class="mui-slider-right mui-disabled">
+								<a @click="handleDelete(item)" class="mui-btn mui-btn-red">删除</a>
+								<a @click="popverbtn(item)" class="mui-btn mui-btn-primary">编辑</a>
+							</div>
+							<div class="mui-slider-handle table-body">
+								<div class="table-body-cell">{{item.name}}</div>
+								<div class="table-body-cell">{{item.date}}</div>
+								<div class="table-body-cell">{{item.worde}}</div>
+								<div class="table-body-cell">{{item.address}}</div>
+							</div>
+						</li>
+					</ul>
+                </div> 
+            </div>
+        </div>
+		
 	</div>
 </template>
 <script>
-	import myHeader from '../../commons/publics/myHeader.vue'
-	export default {
-		data() {
-			return {
-				ass: '1',
-				w: '',
-				yanse: "background:#64b5f6",
-				xianshi: true,
-				chuxucadr: [],
-				xinyongcadr: [
-					// {bankName:1,cardNo:1,creditCardId:1,repaymentAt:1,repaymentAmount:1,status:1},
-					// {bankName:1,cardNo:1,creditCardId:1,repaymentAt:1,repaymentAmount:1,status:1},
-					// {bankName:1,cardNo:1,creditCardId:1,repaymentAt:1,repaymentAmount:1,status:1},
-					// {bankName:1,cardNo:1,creditCardId:1,repaymentAt:1,repaymentAmount:1,status:1},
-					// {bankName:1,cardNo:1,creditCardId:1,repaymentAt:1,repaymentAmount:1,status:1},
-					// {bankName:1,cardNo:1,creditCardId:1,repaymentAt:1,repaymentAmount:1,status:1},
-					],
-				page:1,
-				pageLength:5,
-				fazhi:true,
-				shujukaiguan:true
-			}
-		},
-		created: function() {
-			this.xingyongka();
-			this.chuxuka();
-		},
-		mounted() {
-			var vm = this;
-			//     var w = plus.nativeUI.showWaiting( "刷新中..." );
-			//     setTimeout(function(){
+import adddialog from "./adddialog";
+import editdialog from "./editdialog";
+export default {
+  data() {
+    return {
+      row: null, //表单数据
+      xianz: true,
+      dialogVisible: false, //添加弹窗
+      dialogVisible1: false, //编辑弹窗
+      tableData3: [], //表单数据
+      // {
+      // name: "王小虎",
+      // date: "2016-05-03",
+      // worde: "王小虎",
+      // address: "上海市普陀区金沙江路 1518 弄"
+      // }
 
-			   $('#yyyyyy').css('height',window.innerHeight-150);
-			   $('.mobile').css('height', window.innerHeight - 150);
-			    //   w.close();
-			    // },1000)
-			// $("#ysjdsdsttt").on("swipedown", function(e) {
+      page: 1,
+      total: 0
+    };
+  },
+  mounted() {
+    var vm = this;
+    this.rounres(this.$route.path);
+    vm.ajaxqurt();
+  },
+  watch: {
+    $route(to, from) {
+      // 对路由变化作出响应...
+      // debugger;
 
-			// 	vm.w = plus.nativeUI.showWaiting("刷新中...");
-			// 	vm.shuaxinpanduan();
-			// 	setTimeout(() => {
-			// 		vm.w.close();
-			// 	}, 1000);
-			// })
+      this.rounres(this.$route.path);
+    }
+  },
+  methods: {
+    rounres(date) {
+      if (date != "/index") return false;
+      var vm = this;
+      mui.init({
+        keyEventBind: {
+          backbutton: true //关闭back按键监听
+        },
+        pullRefresh: {
+          container: ".title", //待刷新区域标识，querySelector能定位的css选择器均可，比如：id、.class等
+          up: {
+            height: 50, //可选.默认50.触发上拉加载拖动距离
+            auto: true, //可选,默认false.自动上拉加载一次
+            contentrefresh: "正在加载...", //可选，正在加载状态时，上拉加载控件上显示的标题内容
+            contentnomore: "没有更多数据了", //可选，请求完毕若没有更多数据时显示的提醒内容；
+            callback: function() {
+              //必选，刷新函数，根据具体业务来编写，比如通过ajax从服务器获取新数据；
+              if (vm.xianz) {
+                vm.ajaxqurt();
+              }
+              //1、加载完新数据后，必须执行如下代码，true表示没有更多数据了：
+              //2、若为ajax请求，则需将如下代码放置在处理完ajax响应数据之后
+              this.endPullupToRefresh(true);
+              // this.endPullupToRefresh(false);//结束上拉加载
+              // mui('.title').pullRefresh().refresh(true);//重置上拉加载
+              //mui('.title').pullRefresh().disablePullupToRefresh();//禁用上拉加载
+              //mui('.title').pullRefresh().enablePullupToRefresh();//启用上拉加载
+            }
+          }
+        }
+      });
+    },
+    zlodin() {
+      localStorage.setItem("zidong", "");
+      this.$router.push("/");
+    },
+    popverbtn(item) {
+      this.$router.push({
+        path: "/editdialog",
+        query: item
+      });
+    },
+    ajaxqurt() {
+      var v = this;
+      v.$ajax({
+        data: {
+          s: "App.User_Set.GetList", // 待请求的接口服务名称
+          uuid: localStorage.getItem("uuid"),
+          token: localStorage.getItem("token"), // 更多接口参数
+          key: "from",
+          page: v.page,
+          perpage: 20,
+          callback: "onCallback" // 客户端的JS回调函数
+        },
+        done: function(r) {
+          if (r.ret == "200") {
+            if (r.data.err_code == "0") {
+              var tableData3 = r.data.items;
+              v.total = r.data.total;
 
-			$("#ysjdsdsttt").on("swipeup", function(e) {
-				if(vm.shujukaiguan){
-					if(vm.fazhi){
-						vm.page++;
-						vm.w = plus.nativeUI.showWaiting("加载中...");
-						vm.shuaxinpanduan();
-					}
-				}	
-			})
-			mui.init();
-			vm.yansee(this.bank);
+              var dates = [];
+              for (var i = 0; i < tableData3.length; i++) {
+                tableData3[i].data.id = tableData3[i].id;
+                tableData3[i].data.add_time = tableData3[i].add_time;
+                dates.push(tableData3[i].data);
+              }
+              if (v.page == 1) {
+                v.tableData3 = dates;
+              } else {
+                v.tableData3 = v.tableData3.concat(dates);
+              }
+              var st = 1;
+              if (v.total < 21) {
+                v.xianz = false;
+              } else {
+                st = v.total / 20;
+                if (v.total % 20 > 0) {
+                  st = st + 1;
+                }
+              }
+              if (st != v.page) {
+                v.page++;
+              } else {
+                v.xianz = false;
+              }
+            } else {
+              mui.toast(r.data.err_msg);
+            }
+          } else {
+            mui.toast(r.msg);
+          }
+        }
+      });
+    },
 
-		},
-
-		methods: {
-			// 能否删除
-			isDel(item,event){
-				var vm=this;
-				if (item.status==1) {
-					mui.toast("计划进行中不能删除");
-					return;
-				}else{
-					 var li = event.target.parentNode.parentNode;
-					mui.confirm('确认删除该银行卡？', ' ', ['确认', '取消'], function(e) {
-						if (e.index == 0) {
-							vm.delAjax(item.creditCardId);
-							 setTimeout(() => {
-								li.parentNode.removeChild(li);
-				            }, 1000);
-						} else {
-							setTimeout(function() {
-								mui.swipeoutClose(li);  
-							}, 0);
-						}
-					});
-				};
-			},
-			delAjax(ids){
-				var vm=this;
-				// vm.shujukaiguan=false;
-				var w = plus.nativeUI.showWaiting("删除中...");
-				vm.$ajax({
-					url: "openapi/v1/consumption/delCreditCard",
-					type: "post",
-					data:{creditCardId:ids},
-					success: function(res) {
-						w.close();
-						// vm.shujukaiguan=true;
-                           if (res.code=='0000') {
-							//   vm.xingyongka()
-							  setTimeout(() => {
-									mui.toast("删除成功！");
-									
-								}, 1200);
-						   } else {
-							   mui.toast(res.msg);
-						   } 
-					}
-				})
-				
-			},
-			xosap() {
-				this.page=1;
-				this.xianshi = false;
-				// 
-				// this.chuxuka();
-			},
-			cardAdd() {
-
-				const self = this;
-				this.$ajax({
-					url: "openapi/v1/consumption/addCardAssist",
-					type: "post",
-					success: function(res) {
-						if(res.code == "0000") {
-							// 带查询参数，变成 /register?plan=private
-							self.$router.push({
-								path: '/cardAdd',
-								query: {
-									name: res.name,
-									identity: res.identity
-								}
-							})
-							// self.creditCard.name = res.name;
-							// self.creditCard.identityNo = res.identity;
-							// self.saveCard.name = res.name;
-							// self.saveCard.identityNo = res.identity;
-
-						} else if(res.code == "0001") {
-							var btnArray = ['取消', '确定'];
-							mui.confirm('还未进行实名制是否去实名制认证？', '提示', btnArray, function(e) {
-								if(e.index == 1) {
-								self.$router.push("/realName");
-								}
-							})
-						} else {
-							mui.toast(res.msg);
-						}
-					}
-				});
-
-			},
-			bianji(item) {
-				var vm = this;
-				this.$ajax({
-					url: "openapi/v1/consumption/getCreditCardDetailed",
-					type: "post",
-					data: {
-						creditCardId: item
-					},
-					success: function(res) {
-						if(res.code == "0000") {
-							vm.$router.push({
-								path: '/cardEditCard',
-								query: res.data
-							})
-						} else {
-							mui.toast(res.msg);
-						}
-					}
-				});
-			},
-			asdada() {
-				this.xianshi = true;
-				this.page=1;
-				// $('#yyyyyy').css('height',window.innerHeight-150);
-				// this.xingyongka();
-			},
-			yansee(bank) {
-				var vm = this;
-				if(bank == "建设银行") {
-					return vm.yanse = "background:#64b5f6";
-
-				} else if(bank == "招商银行") {
-					return vm.yanse = "background:#e57373";
-
-				} else if(bank == "光大银行") {
-					return vm.yanse = "background:#ffd54f";
-
-				} else if(bank == "农业银行") {
-					return vm.yanse = "background:#81c784";
-
-				} else {
-					return vm.yanse = "background:#64b5f6";
-
-				}
-			},
-			cardplan(itm,isd) {
-				this.$router.push({
-					path: '/cardPlan',
-					query: {
-						creditCardId: itm,
-						status:isd
-					}
-				})
-			},
-			xingyongka() {
-				var vm = this;
-				this.$ajax({
-					url: "openapi/v1/consumption/getCreditCardList",
-					type: "post",
-					data: {
-						page: vm.page,
-						pageLength: 5,
-					},
-					success: function(res) {
-						if(res.code == "0000") {
-                             if(res.data.length<5){
-							   vm.fazhi=false;
-							   if(vm.page>1){
-                                    mui.toast("已无更多数据");
-							   }
-                            }else{
-                                vm.fazhi=true;
-                            }
-                        if(vm.page==1){
-                            vm.xinyongcadr = res.data;
-                        }else{
-                           vm.xinyongcadr= vm.xinyongcadr.concat(res.data);
-                        }
-                           	
-						}
-					}
-				});
-			},
-			chuxuka() {
-				var vm = this;
-				vm.shujukaiguan=false;
-				this.$ajax({
-					url: "openapi/v1/consumption/getDebitCardsList",
-					type: "post",
-					data: {
-						page: vm.page,
-						pageLength: 5,
-					},
-					success: function(res) {
-                         vm.shujukaiguan=true;
-						if(res.code == "0000") {
-                           
-                             if(res.data.length<5){
-                               vm.fazhi=false;
-                               if(vm.page>1){
-                                    mui.toast("已无更多数据");
-							   }
-                            }else{
-                                vm.fazhi=true;
-                            }
-							if(vm.page==1){
-								vm.chuxucadr = res.data;
-							}else{
-							vm.chuxucadr= vm.chuxucadr.concat(res.data);
-							}
-						}
-					}
-				});
-			},
-			shuaxinpanduan() {
-				var vm = this;
-				if(vm.xianshi) {
-					vm.xingyongka();
-				} else {
-					vm.chuxuka();
-				}
-			}
-		},
-		components: {
-			myHeader,
-		}
-	}
+    dtuichu() {
+      this.$router.push("/");
+    },
+    handleEdit(index, row) {
+      this.row = row;
+      this.dialogVisible1 = true;
+    },
+    handleDelete(row) {
+      var v = this;
+      var btnArray = ["确认", "取消"];
+      mui.confirm("确认删除该条记录？", "提示！", btnArray, function(e) {
+        if (e.index == 0) {
+          v.$ajax({
+            data: {
+              s: "App.User_Set.Delete", // 待请求的接口服务名称
+              uuid: localStorage.getItem("uuid"),
+              token: localStorage.getItem("token"), // 更多接口参数
+              id: row.id,
+              callback: "onCallback" // 客户端的JS回调函数
+            },
+            done: function(r) {
+              if (r.ret == "200") {
+                if (r.data.err_code == "0") {
+                  mui.toast("删除成功!");
+                  v.page = 1;
+                  v.ajaxqurt(); //获取列表
+                } else {
+                  mui.toast(r.data.err_msg);
+                }
+              } else {
+                mui.toast(r.msg);
+              }
+            }
+          });
+        } else {
+          mui.toast("取消删除！");
+        }
+      });
+    }
+  },
+  components: {
+    adddialog,
+    editdialog
+  }
+};
 </script>
+
 <style scoped>
-    .mui-table-view{
-		background: none;
-	}
-	.home2,
-	.mui-content {
-		margin-top: .88rem;
-	}
+.title {
+  margin-top: 44px;
+}
 
-	.myyingyong {
-		display: inline-block;
-		width: 2rem;
-		height: .98rem;
-		line-height: .98rem;
-		font-size: .3rem;
-		color: #646464;
-	}
+.table {
+  background: #fff;
+}
+.aout {
+  overflow: auto;
+}
+.table-head {
+  display: flex;
+  display: -webkit-flexbox;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  padding: 0.3rem 0;
+}
 
-	.mui-table-view-cell {
-		border-top: .3rem solid #EFEFF4 !important;
-	}
-
-	.home2-indes {
-		color: #646464;
-	}
-
-	
-
-	.zise {
-		color: #fff;
-	}
-
-	#sliderSegmentedControl {
-		background: #fff;
-		height: .98rem;
-	}
-
-	.cardOperations {
-		float: right;
-		line-height: 0.88rem;
-		margin-right: 0.3rem;
-		color: #b4b4b4;
-	}
-
-	.home-2-1 {
-		display: inline-block;
-		width: 100%;
-		text-align: left;
-		padding-left: 0.3rem;
-		font-size: 0.28rem;
-		height: .88rem;
-		line-height: .88rem;
-		border-bottom: 1px solid #EFEFF4;
-		color: #332323;
-		background: #fff;
-	}
-
-	.home-2-2 {
-		height: 1.64rem;
-		border-bottom: 1px solid #EFEFF4;
-		display: -webkit-box;
-		-webkit-box-pack: justify;
-		padding: .4rem .3rem;
-		background: #FAFAFA;
-	}
-
-	.mui-table-view-cell {
-		padding: 0;
-	}
-
-	.home-2-2 div {
-		height: 1.64rem;
-	}
-
-	.home-2-2 div span {
-		display: block;
-		text-align: center;
-	}
-
-	.home-2-2 div span:nth-of-type(1) {
-		font-size: .32rem;
-		color: #323232;
-	}
-
-	.home-2-2 div span:nth-of-type(2) {
-		font-size: 0.22rem;
-		color: #B4B4B4;
-	}
-
-	.mobile {
-		padding: 0 .3rem;
-		overflow: auto;
-	}
-
-	#ysjdsdsttt {
-		overflow: auto;
-	}
-
-	.backs {
-		height: 2rem;
-		line-height: 2rem;
-		margin-top: .3rem;
-		border-radius: 8px;
-		text-align: left;
-		padding: 0 .3rem;
-		color: #fff;
-	}
-
-	.muicontro {
-		width: 50%;
-		float: left;
-		height: .98rem;
-	}
+.table-head-cell {
+  width: 25%;
+  font-size: 0.28rem;
+  border-right: 0.5px solid #e1e1e1;
+}
+.table-head-cell:last-child {
+  border-right: 0;
+}
+.table-body {
+  display: flex;
+  display: -webkit-flexbox;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+}
+.table-body-cell {
+  width: 25%;
+  font-size: 0.22rem;
+}
+.popr_conter {
+  width: 5rem;
+  margin: 0 auto;
+  height: 10%;
+}
 </style>

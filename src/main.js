@@ -15,28 +15,28 @@ Vue.config.productionTip = false
 
 //手机端代码
 
-// if (window.plus) {
-// 	plusReady();
-// } else {
-//   	document.addEventListener('plusready', plusReady, false);
-// }
+if (window.plus) {
+	plusReady();
+} else {
+  	document.addEventListener('plusready', plusReady, false);
+}
 
-// function plusReady() {
-//   new Vue({
-//     el: '#app',
-//     router,
-//     template: '<App/>',
-//     components: { App }
-//   })
-// }
+function plusReady() {
+  new Vue({
+    el: '#app',
+    router,
+    template: '<App/>',
+    components: { App }
+  })
+}
 
 
 
 //浏览器调试
 
-new Vue({
-  el: '#app',
-  router,
-  template: '<App/>',
-  components: { App }
-})
+// new Vue({
+//   el: '#app',
+//   router,
+//   template: '<App/>',
+//   components: { App }
+// })

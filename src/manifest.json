@@ -1,471 +1,201 @@
 ﻿{
-	"@platforms": [
-		"android",
-		"iPhone",
-		"iPad"
-	],
-	"id": "H5CF7F3AD",/*应用的标识，创建应用时自动生成，勿手动修改*/
-	"name": "泓创金服",/*应用名称，程序桌面图标名称*/
-	"version": {
-		"name": "1.0",/*应用版本名称*/
-		"code": ""
-	},
-	"description": "",/*应用描述信息*/
-	"icons": {
-		"72": "icon.png"
-	},
-	"launch_path": "index.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
-	"developer": {
-		"name": "",/*开发者名称*/
-		"email": "",/*开发者邮箱地址*/
-		"url": ""
-	},
-	"permissions": {
-
-
-		"Cache": {
-			"description": "管理应用缓存"
-		},
-		"Camera": {
-			"description": "访问摄像头"
-		},
-		"Console": {
-			"description": "跟踪调试输出日志"
-		},
-		"Contacts": {
-			"description": "访问系统联系人信息"
-		},
-		"Device": {
-			"description": "访问设备信息"
-		},
-		"Downloader": {
-			"description": "文件下载管理"
-		},
-		"Events": {
-			"description": "应用扩展事件"
-		},
-		"File": {
-			"description": "访问本地文件系统"
-		},
-		"Gallery": {
-			"description": "访问系统相册"
-		},
-
-		"Invocation": {
-			"description": "使用Native.js能力"
-		},
-		"Storage": {
-			"description": "管理应用本地数据"
-		},
-
-		"Uploader": {
-			"description": "管理文件上传任务"
-		},
-		"Runtime": {
-			"description": "访问运行期环境"
-		},
-		"XMLHttpRequest": {
-			"description": "跨域网络访问"
-		},
-		"Zip": {
-			"description": "文件压缩与解压缩"
-		},
-
-
-		"Webview": {
-			"description": "窗口管理"
-		},
-		"NativeUI": {
-			"description": "原生UI控件"
-		},
-		"Navigator": {
-			"description": "浏览器信息"
-		},
-		"NativeObj": {
-			"description": "原生对象"
-		},
-		"Share": {
-			"appid":"wxafeafc37309b7d52",
-			"appsecret":"adef8549031064e0834089c136567b3f",
-			"description":"微信分享"}
-	},
-	"plus": {
-		"splashscreen": {
-			"autoclose": true,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
-			"waiting": true,
-			"delay": "1000"
-		},
-		"popGesture": "close",/*设置应用默认侧滑返回关闭Webview窗口，"none"为无侧滑返回功能，"hide"为侧滑隐藏Webview窗口。参考http://ask.dcloud.net.cn/article/102*/
-		"runmode": "normal",/*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
-		"signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保���给应用签名，暂不使用*/
-		"distribute": {
-			"plugins": {
-				"share": {
-					"weixin": {"appid":"wxafeafc37309b7d52","appsecret":"adef8549031064e0834089c136567b3f","description":"可选，微信分享"}
-				}
-			},
-			"apple": {
-				"appid": "",/*iOS应用标识，苹果开发网站申请的appid，如io.dcloud.HelloH5*/
-				"mobileprovision": "",/*iOS应用打包配置文件*/
-				"password": "",/*iOS应用打包个人证书导入密码*/
-				"p12": "",/*iOS应用打包个人证书，打包配置文件关联的个人证书*/
-				"devices": "universal",/*iOS应用支持的设备类型，可取值iphone/ipad/universal*/
-				"frameworks": []
-			},
-			"google": {
-				"packagename": "",/*Android应用包名，如io.dcloud.HelloH5*/
-				"keystore": "",/*Android应用打包使用的密钥库文件*/
-				"password": "",/*Android应用打包使用密钥库中证书的密码*/
-				"aliasname": "",/*Android应用打包���用密钥库中证书的别名*/
-				"permissions": ["<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>","<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>","<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>","<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>","<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.READ_LOGS\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>","<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>"]
-			},
-			"orientation": ["portrait-primary"],/*应用支持的方向，portrait-primary：竖屏正方向；portrait-secondary：竖屏反方向；landscape-primary：横屏正方向；landscape-secondary：横屏反方向*/
-			"icons": {
-				"ios": {
-					"prerendered": true, /*应用图标是否已经高亮处理，在iOS6及以下设备上有效*/
-					"auto": "", /*应用图标，分辨率：512x512，用于自动生成各种尺寸程序图标*/
-					"iphone": {
-						"normal": "unpackage/res/icons/57x57.png", /*iPhone3/3GS程序图标，分辨率：57x57*/
-						"retina": "unpackage/res/icons/114x114.png", /*iPhone4程序图标，分辨率：114x114*/
-						"retina7": "unpackage/res/icons/120x120.png", /*iPhone4S/5/6程序图标，分辨率：120x120*/
-						"retina8": "unpackage/res/icons/180x180.png", /*iPhone6 Plus程序图标，分辨率：180x180*/
-						"spotlight-normal": "unpackage/res/icons/29x29.png", /*iPhone3/3GS Spotlight搜索程序图标，分辨率：29x29*/
-						"spotlight-retina": "unpackage/res/icons/58x58.png", /*iPhone4 Spotlight搜索程序图标，分辨率：58x58*/
-						"spotlight-retina7": "unpackage/res/icons/80x80.png", /*iPhone4S/5/6 Spotlight搜索程序图标，分辨率：80x80*/
-						"settings-normal": "unpackage/res/icons/29x29.png", /*iPhone4设置页面程序图标，分辨率：29x29*/
-						"settings-retina": "unpackage/res/icons/58x58.png", /*iPhone4S/5/6设置页面程序图标，分辨率：58x58*/
-						"settings-retina8": "unpackage/res/icons/87x87.png"
-					},
-					"ipad": {
-						"normal": "unpackage/res/icons/72x72.png", /*iPad普通屏幕程序图标，分辨率：72x72*/
-						"retina": "unpackage/res/icons/144x144.png", /*iPad高分屏程序图标，分辨率：144x144*/
-						"normal7": "unpackage/res/icons/76x76.png", /*iPad iOS7程序图标，分辨率：76x76*/
-						"retina7": "unpackage/res/icons/152x152.png", /*iPad iOS7高分屏程序图标，分辨率：152x152*/
-						"spotlight-normal": "unpackage/res/icons/50x50.png", /*iPad Spotlight搜索程序图标，分辨率：50x50*/
-						"spotlight-retina": "unpackage/res/icons/100x100.png", /*iPad高分屏Spotlight搜索程序图标，分辨率：100x100*/
-						"spotlight-normal7": "unpackage/res/icons/40x40.png",/*iPad iOS7 Spotlight搜索程序图标，分辨率：40x40*/
-						"spotlight-retina7": "unpackage/res/icons/80x80.png",/*iPad iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*/
-						"settings-normal": "unpackage/res/icons/29x29.png",/*iPad设置页面程序图标，分辨率：29x29*/
-						"settings-retina": "unpackage/res/icons/58x58.png"
-					}
-				},
-				"android": {
-					"mdpi": "unpackage/res/icons/48x48.png", /*普通屏程序图标，分辨率：48x48*/
-					"ldpi": "unpackage/res/icons/48x48.png", /*大屏程序图标，分辨率：48x48*/
-					"hdpi": "unpackage/res/icons/72x72.png", /*高分屏程序图标，分辨率：72x72*/
-					"xhdpi": "unpackage/res/icons/96x96.png",/*720P高分屏程序图标，分辨率：96x96*/
-					"xxhdpi": "unpackage/res/icons/144x144.png","xxxhdpi":"unpackage/res/icons/192x192.png"
-				}
-			},
-			"splashscreen": {
-				"ios": {
-					"iphone": {
-						"default": "", /*iPhone3启动图片选，分辨率：320x480*/
-						"retina35": "D:/手机APP/front-end/UI图/00z loading/iOS_640x960.png",/*3.5英寸设备(iPhone4)启动图片，分辨率：640x960*/
-						"retina40": "D:/手机APP/front-end/UI图/00z loading/iOS_640x1136.png",/*4.0 英寸设备(iPhone5/iPhone5s)启动图片，分辨率：640x1136*/
-						"retina47": "D:/手机APP/front-end/UI图/00z loading/iOS_750x1334.png",/*4.7 英寸设备(iPhone6)启动图片，分辨率：750x1334*/
-						"retina55": "D:/手机APP/front-end/UI图/00z loading/iOS_1242x2208.png",/*5.5 英寸设备(iPhone6 Plus)启动图片，分辨率：1242x2208*/
-						"retina55l": ""
-					},
-					"ipad": {
-						"portrait": "", /*iPad竖屏启动图片，分辨率：768x1004*/
-						"portrait-retina": "",/*iPad高分屏竖屏图片，分辨率：1536x2008*/
-						"landscape": "", /*iPad横屏启动图片，分辨率：1024x748*/
-						"landscape-retina": "", /*iPad高分屏横屏启动图片，分辨率：2048x1496*/
-						/*iPad iOS7竖屏启动图��，分辨率：768x1024*/
-						"portrait-retina7": "",/*iPad iOS7高分屏竖屏图片，分辨率：1536x2048*/
-						"landscape7": "", /*iPad iOS7横屏启动图片，分辨率：1024x768*/
-						"landscape-retina7": ""
-					}
-				},
-				"android": {
-					"mdpi": "", /*普通屏启动图片，分辨率：240x282*/
-					"ldpi": "", /*大屏启动图片，分辨率：320x442*/
-					"hdpi": "D:/手机APP/front-end/UI图/00z loading/and_480x762.png", /*高分屏启动图片，分辨率：480x762*/
-					"xhdpi": "D:/手机APP/front-end/UI图/00z loading/and_720x1242.png", /*720P高分屏启动图片，分辨率：720x1242*/
-					"xxhdpi": "D:/手机APP/front-end/UI图/00z loading/and_1080x1882.png"
-				}
-			}
-		}
-	},
-	"dependencies": {
-		"pages": {
-			"index.html": {
-				"href": "index.html",
-				"resources": [
-					"static/commons/css/mui.min.css",
-					"static/commons/fonts/mui.ttf",
-					"static/commons/css/style.min.css",
-					"static/commons/css/mui.picker.min.css",
-					"static/commons/css/best.css",
-					"static/commons/js/mui.min.js",
-					"static/commons/js/fastclick.js",
-					"static/commons/js/mui.picker.min.js"
-				],
-				"priority": 0
-			}
-		},
-		"idle": {
-			"resources": [
-				"src/components/menus/mine/wallet/twoShare.vue",
-				"src/commons/img/ic-home/banner.png",
-				"dist/unpackage/release/H5CF7F3AD_1111161102.ipa",
-				"dist/unpackage/res/icons/144x144.png",
-				"static/commons/img/login/and_720x1242.png",
-				"static/commons/img/commom/ic_close_pre.png",
-				"dist/static/commons/img/login/log_verify.png",
-				"dist/unpackage/res/icons/76x76.png",
-				"dist/static/img/banner02.1209b3b.png",
-				"dist/static/commons/img/login/ydy_iOS_640x1136_01.png",
-				"src/commons/js/shoushijiesuo.js",
-				"static/commons/img/ic-home/ic_retime_def.png",
-				"dist/unpackage/res/icons/29x29.png",
-				"src/components/menus/card/cardConfirmPayment.vue",
-				"dist/unpackage/release/H5CF7F3AD_1111171628.apk",
-				"dist/static/commons/img/ic-home/proclaim.png",
-				"dist/static/commons/img/ic-home/ic_retime_def.png",
-				"package.json",
-				"dist/static/commons/img/ic-home/ic_share_def.png",
-				"dist/static/img/logo.11f2eec.png",
-				"dist/static/commons/js/mui.min.js",
-				"dist/unpackage/res/icons/152x152.png",
-				"config/dev.env.js",
-				"dist/static/commons/img/login/ydy_1080x1882_03.png",
-				"README.md",
-				"dist/unpackage/res/icons/logo_256.png",
-				"dist/static/commons/img/ic-home/ic_inquire_def.png",
-				"dist/unpackage/res/icons/192x192.png",
-				"dist/static/commons/img/myicon/ic_shim.png",
-				"static/commons/img/commom/ic_close_def.png",
-				"static/commons/img/ic-home/ic_share_Pre.png",
-				"dist/manifest.json",
-				"static/commons/img/ic-home/ic_home_def.png",
-				"dist/unpackage/res/icons/58x58.png",
-				"dist/static/commons/img/ic-home/ic_inquire_pre.png",
-				"static/commons/img/login/ydy_720x1242_01.png",
-				"static/commons/img/ic-home/ic_card_def.png",
-				"src/commons/css/home2.css",
-				"src/assets/logo.png",
-				"static/commons/img/myicon/ic_shim.png",
-				"dist/unpackage/res/icons/80x80.png",
-				"static/commons/img/ic-home/ic_home_Pre.png",
-				"src/main.js",
-				"dist/static/commons/img/login/ydy_1080x1882_04.png",
-				"dist/static/commons/img/login/ydy_iOS_1242x2208_01.png",
-				"dist/static/commons/css/style.min.css",
-				"dist/static/img/banner01.28e90c5.png",
-				"dist/unpackage/res/icons/180x180.png",
-				"dist/unpackage/res/icons/48x48.png",
-				"dist/unpackage/res/icons/72x72.png",
-				"static/commons/img/ic-home/ic_s_exploit_pre.png",
-				"dist/static/commons/img/login/log_account.png",
-				"src/components/menus/mine/wallet/tixianjilu.vue",
-				"static/commons/img/myicon/ic_exit.png",
-				"src/components/menus/index.vue",
-				"src/commons/img/logo/logo.png",
-				"dist/unpackage/res/icons/256x256.png",
-				"dist/static/img/and_720x1242.cd4ddc6.png",
-				"src/commons/img/ic-home/ic_card_Pre.png",
-				"dist/unpackage/res/icons/50x50.png",
-				"src/commons/img/ic-home/ic_card_def.png",
-				"dist/static/commons/img/login/ydy_iOS_640x1136_04.png",
-				"dist/static/css/app.b337cb5b9b81e81e2106b57404e829e8.css",
-				"src/commons/img/ic-home/ic_mine_def.png",
-				"static/commons/img/ic-home/ic_credit_def.png",
-				"dist/static/js/vendor.8e113bfec253d92683c2.js.map",
-				"dist/static/commons/img/ic-home/ic_card_def.png",
-				"src/commons/publics/myButton.vue",
-				"dist/unpackage/release/H5CF7F3AD_1111163838.apk",
-				"static/commons/img/login/ydy_720x1242_03.png",
-				"dist/static/commons/img/commom/ic_close_def.png",
-				"config/prod.env.js",
-				"build/webpack.base.conf.js",
-				"dist/static/commons/img/logo_256.png",
-				"dist/unpackage/res/icons/40x40.png",
-				"dist/static/img/ydy_720x1242_04.1b4c9b8.png",
-				"static/commons/img/mine/ic_hide.png",
-				"src/manifest.json",
-				"static/commons/img/ic-home/ic_card_Pre.png",
-				"static/commons/img/login/ydy_720x1242_02.png",
-				"src/components/menus/mine/security.vue",
-				"src/commons/js/mui.min.js",
-				"static/commons/img/login/log_account.png",
-				"src/components/menus/mine/addGesture.vue",
-				"src/components/menus/mine/assets.vue",
-				"dist/static/commons/img/ic-home/ic_mine_Pre.png",
-				"dist/static/js/manifest.0b86012a72235dee428e.js.map",
-				"dist/unpackage/res/icons/114x114.png",
-				"static/commons/img/mine/ic_see.png",
-				"src/commons/publics/login.vue",
-				"static/commons/img/ic-home/ic_s_exploit_def.png",
-				"dist/static/commons/img/login/ydy_1080x1882_01.png",
-				"static/commons/img/login/ydy_720x1242_04.png",
-				"dist/static/commons/img/ic-home/ic_credit_pre.png",
-				"src/components/menus/share/message.vue",
-				"build/check-versions.js",
-				"src/commons/img/ic-home/ic_b_exploit_def.png",
-				"src/commons/img/ic-home/ic_s_exploit_pre.png",
-				"dist/static/commons/img/ic-home/ic_share_Pre.png",
-				"dist/static/css/app.b337cb5b9b81e81e2106b57404e829e8.css.map",
-				"dist/static/commons/img/login/ydy_1080x1882_02.png",
-				"dist/static/commons/img/login/ydy_iOS_640x960_03.png",
-				"src/commons/js/fastclick.js",
-				"dist/unpackage/res/icons/120x120.png",
-				"src/commons/css/mui.css",
-				"src/components/menus/index/1.vue",
-				"dist/static/commons/img/mine/ic_see.png",
-				"static/commons/img/ic-home/ic_credit_pre.png",
-				"dist/unpackage/res/icons/100x100.png",
-				"dist/static/commons/js/fastclick.js",
-				"dist/static/commons/img/ic-home/ic_b_exploit_def.png",
-				"static/commons/img/login/log_verify.png",
-				"src/commons/img/ic-home/ic_credit_pre.png",
-				"src/components/menus/card/cardSubmitPlan.vue",
-				"dist/unpackage/release/H5CF7F3AD_1111163818.ipa",
-				"dist/static/commons/fonts/mui.ttf",
-				"static/commons/img/ic-home/ic_inquire_def.png",
-				"static/commons/img/logo/logo.png",
-				"static/commons/img/ic-home/ic_inquire_pre.png",
-				"src/commons/publics/myHeader.vue",
-				"dist/static/commons/img/login/ydy_480x762_01.png",
-				"src/components/menus/card.vue",
-				"src/components/menus/card/cardEditCard.vue",
-				"dist/static/commons/css/best.css",
-				"dist/static/commons/img/myicon/ic_exit.png",
-				"src/commons/img/ic-home/ic_common_def.png",
-				"src/router/index.js",
-				"src/commons/publics/myInput.vue",
-				"src/commons/img/ic-home/ic_retime_def.png",
-				"dist/static/commons/img/myicon/ic_us.png",
-				"src/commons/img/login/log_verify.png",
-				"dist/static/commons/img/login/ydy_720x1242_01.png",
-				"src/commons/img/ic-home/ic_loan_pre.png",
-				"src/commons/img/logo_256.png",
-				"src/commons/img/login/log_account.png",
-				"dist/unpackage/res/icons/87x87.png",
-				"src/commons/img/ic-home/ic_inquire_def.png",
-				"dist/static/commons/img/ic-home/ic_credit_def.png",
-				"dist/static/commons/img/ic-home/ic_retime_pre.png",
-				"dist/static/commons/img/ic-home/ic_common_def.png",
-				"dist/static/commons/img/login/ydy_iOS_640x960_01.png",
-				"src/components/menus/mine/editGesture.vue",
-				"src/commons/img/ic-home/ic_home_def.png",
-				"src/components/menus/mine/wallet/oneShare.vue",
-				"src/commons/img/ic-home/ic_share_Pre.png",
-				"dist/static/commons/img/login/ydy_480x762_02.png",
-				"dist/static/img/ydy_720x1242_02.258056f.png",
-				"dist/static/commons/css/mui.min.css",
-				"src/components/menus/share.vue",
-				"dist/static/commons/img/myicon/ic_wallet.png",
-				"dist/static/commons/img/login/ydy_iOS_640x960_04.png",
-				"dist/static/js/manifest.0b86012a72235dee428e.js",
-				"src/components/menus/card/cardAddPlan.vue",
-				"src/components/menus/mine/wallet/tixian.vue",
-				"dist/static/commons/img/ic-home/ic_home_Pre.png",
-				"package-lock.json",
-				"src/components/menus/card/cardEstablishComplete.vue",
-				"dist/static/commons/img/login/ydy_iOS_1242x2208_04.png",
-				"dist/static/commons/img/myicon/ic_center.png",
-				"dist/static/img/logo_256.e8aa12a.png",
-				"build/webpack.dev.conf.js",
-				"dist/static/commons/img/ic-home/ic_s_exploit_pre.png",
-				"src/commons/img/ic-home/ic_home_Pre.png",
-				"static/commons/img/logo_256.png",
-				"dist/unpackage/res/icons/57x57.png",
-				"dist/static/commons/img/login/ydy_720x1242_02.png",
-				"static/commons/img/ic-home/ic_common_pre.png",
-				"static/commons/img/ic-home/banner02.png",
-				"dist/static/commons/js/mui.picker.min.js",
-				"dist/app.js",
-				"config/index.js",
-				"static/commons/img/myicon/ic_wallet.png",
-				"dist/static/commons/img/commom/ic_close_pre.png",
-				"src/commons/img/ic-home/ic_share_def.png",
-				"src/commons/fonts/mui.ttf",
-				"dist/unpackage/res/icons/96x96.png",
-				"static/commons/img/ic-home/ic_retime_pre.png",
-				"static/commons/img/ic-home/ic_loan_pre.png",
-				"static/commons/img/myicon/ic_us.png",
-				"dist/static/commons/img/login/ydy_iOS_640x1136_02.png",
-				"src/components/menus/mine/wallet/wallet.vue",
-				"dist/static/img/ydy_720x1242_01.3544043.png",
-				"dist/static/js/app.2327d70e76eb29c73c33.js.map",
-				"src/components/menus/card/cardAdd.vue",
-				"dist/static/commons/img/ic-home/banner01.png",
-				"dist/static/commons/img/ic-home/ic_card_Pre.png",
-				"src/commons/js/tool.js",
-				"static/commons/img/ic-home/ic_mine_Pre.png",
-				"src/commons/css/mui.min.css",
-				"src/App.vue",
-				"dist/static/commons/img/login/ydy_iOS_640x960_02.png",
-				"src/components/menus.vue",
-				"src/components/menus/mine/wallet/tatalAssets.vue",
-				"src/components/menus/card/cardVerifyingGesturecrYptography.vue",
-				"src/commons/img/ic-home/ic_mine_Pre.png",
-				"static/commons/img/ic-home/banner.png",
-				"dist/static/commons/img/ic-home/ic_mine_def.png",
-				"build/dev-client.js",
-				"src/components/menus/mine/wallet/tixianSuccess.vue",
-				"dist/static/commons/img/mine/ic_succeed.png",
-				"dist/static/commons/img/ic-home/ic_home_def.png",
-				"static/commons/img/ic-home/ic_share_def.png",
-				"src/components/menus/card/cardPreview.vue",
-				"dist/static/commons/img/ic-home/ic_loan_pre.png",
-				"dist/static/commons/img/login/ydy_iOS_1242x2208_02.png",
-				"dist/static/commons/img/ic-home/ic_loan_def.png",
-				"dist/static/js/vendor.8e113bfec253d92683c2.js",
-				"dist/static/commons/img/login/ydy_720x1242_04.png",
-				"static/commons/img/ic-home/banner01.png",
-				"static/commons/img/myicon/ic_center.png",
-				"dist/static/commons/img/logo/logo.png",
-				"dist/static/commons/img/mine/ic_hide.png",
-				"dist/static/commons/img/ic-home/banner02.png",
-				"src/components/menus/mine/backGesture.vue",
-				"src/components/menus/card/cardPlan.vue",
-				"static/commons/img/ic-home/ic_b_exploit_def.png",
-				"src/commons/img/ic-home/ic_retime_pre.png",
-				"static/commons/img/mine/ic_succeed.png",
-				"src/commons/img/ic-home/ic_common_pre.png",
-				"src/components/menus/card/cardAddSuccess.vue",
-				"dist/static/commons/img/login/ydy_iOS_640x1136_03.png",
-				"dist/static/commons/img/login/ydy_iOS_1242x2208_03.png",
-				"dist/unpackage/release/H5CF7F3AD_1111160223.apk",
-				"src/components/menus/share/code.vue",
-				"src/components/menus/mine/abouUs.vue",
-				"dist/static/commons/img/login/and_720x1242.png",
-				"build/dev-server-web.js",
-				"src/components/menus/card/cardAdd1.vue",
-				"dist/static/commons/css/mui.picker.min.css",
-				"static/commons/img/ic-home/ic_loan_def.png",
-				"dist/unpackage/release/H5CF7F3AD_1111171606.ipa",
-				"dist/index.html",
-				"build/utils.js",
-				"src/components/menus/mine/realName.vue",
-				"dist/static/commons/img/login/ydy_480x762_03.png",
-				"src/components/menus/mine.vue",
-				"dist/static/js/app.2327d70e76eb29c73c33.js",
-				"dist/static/commons/img/login/ydy_480x762_04.png",
-				"build/dev-server.js",
-				"dist/static/img/ydy_720x1242_03.c4aa46f.png",
-				"dist/unpackage/release/H5CF7F3AD_1111162025.ipa",
-				"src/commons/img/ic-home/ic_credit_def.png",
-				"static/commons/img/ic-home/ic_mine_def.png",
-				"build/vue-loader.conf.js",
-				"dist/static/commons/img/ic-home/ic_common_pre.png",
-				"src/commons/img/ic-home/ic_loan_def.png",
-				"src/commons/img/ic-home/ic_s_exploit_def.png",
-				"static/commons/img/ic-home/ic_common_def.png",
-				"build/build.js",
-				"dist/static/commons/img/ic-home/banner.png",
-				"dist/static/commons/img/login/ydy_720x1242_03.png",
-				"src/commons/img/ic-home/ic_inquire_pre.png",
-				"dist/static/commons/img/ic-home/ic_s_exploit_def.png",
-				"dist/unpackage/release/H5CF7F3AD_1111162053.apk",
-				"build/webpack.dev.web.conf.js",
-				"static/commons/img/ic-home/proclaim.png",
-				"dist/static/img/banner.28e90c5.png",
-				"build/webpack.prod.conf.js"
-			]
-		}
-	}
+    "@platforms": ["android", "iPhone", "iPad"],
+    "id": "H5723F869",/*应用的标识，创建应用时自动生成，勿手动修改*/
+    "name": "小本本",/*应用名称，程序桌面图标名称*/
+    "version": {
+        "name": "1.0",/*应用版本名称*/
+        "code": ""
+    },
+    "description": "",/*应用描述信息*/
+    "icons": {
+        "72": "icon.png"
+    },
+    "launch_path": "index.html",/*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+    "developer": {
+        "name": "",/*开发者名称*/
+        "email": "",/*开发者邮箱地址*/
+        "url": ""/*开发者个人主页地址*/
+    },
+    "permissions": {
+        "Accelerometer": {
+            "description": "访问加速度感应器"
+        },
+        "Audio": {
+            "description": "访问麦克风"
+        },
+        "Messaging":{
+        	"description": "短彩邮件插件"
+        },
+        "Cache": {
+            "description": "管理应用缓存"
+        },
+        "Camera": {
+            "description": "访问摄像头"
+        },
+        "Console": {
+            "description": "跟踪调试输出日志"
+        },
+        "Contacts": {
+            "description": "访问系统联系人信息"
+        },
+        "Device": {
+            "description": "访问设备信息"
+        },
+        "Downloader": {
+            "description": "文件下载管理"
+        },
+        "Events": {
+            "description": "应用扩展事件"
+        },
+        "File": {
+            "description": "访问本地文件系统"
+        },
+        "Gallery": {
+            "description": "访问系统相册"
+        },
+        "Geolocation": {
+            "description": "访问位置信息"
+        },
+        "Invocation": {
+            "description": "使用Native.js能力"
+        },
+        "Orientation": {
+            "description": "访问方向感应器"
+        },
+        "Proximity": {
+            "description": "访问距离感应器"
+        },
+        "Storage": {
+            "description": "管理应用本地数据"
+        },
+        
+        "Uploader": {
+            "description": "管理文件上传任务"
+        },
+        "Runtime": {
+            "description": "访问运行期环境"
+        },
+        "XMLHttpRequest": {
+            "description": "跨域网络访问"
+        },
+        "Zip": {
+            "description": "文件压缩与解压缩"
+        },
+        "Barcode": {
+            "description": "管理二维码扫描插件"
+        },
+        "Maps": {
+            "description": "管理地图插件"
+        },
+        
+        "Webview":{
+        	"description": "窗口管理"
+        },
+        "NativeUI":{
+        	"description": "原生UI控件"
+        },
+        "Navigator":{
+        	"description": "浏览器信息"
+        },
+        "NativeObj":{
+        	"description": "原生对象"
+        },"Share":{}
+    },
+    "plus": {
+        "splashscreen": {
+            "autoclose": true,/*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
+            "waiting": true,"delay":"3000"/*是否在程序启动界面显示等待雪花，true表示显示，false表示不显示。*/
+        },
+        "popGesture": "close",/*设置应用默认侧滑返回关闭Webview窗口，"none"为无侧滑返回功能，"hide"为侧滑隐藏Webview窗口。参考http://ask.dcloud.net.cn/article/102*/
+        "runmode": "normal",/*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
+        "signature": "Sk9JTiBVUyBtYWlsdG86aHIyMDEzQGRjbG91ZC5pbw==",/*可选，保���给应用签名，暂不使用*/
+        "distribute": {"plugins":{"share":{"weixin":{"appid":"12","appsecret":"23","description":"可选，微信分享"}}},
+            "apple": {
+                "appid": "",/*iOS应用标识，苹果开发网站申请的appid，如io.dcloud.HelloH5*/
+                "mobileprovision": "",/*iOS应用打包配置文件*/
+                "password": "",/*iOS应用打包个人证书导入密码*/
+                "p12": "",/*iOS应用打包个人证书，打包配置文件关联的个人证书*/
+                "devices": "universal",/*iOS应用支持的设备类型，可取值iphone/ipad/universal*/
+                "frameworks":[
+                ]/*调用Native.js调用原生Objective-c API需要引用的FrameWork，如需调用GameCenter，则添加"GameKit.framework"*/
+            },
+            "google": {
+                "packagename": "",/*Android应用包名，如io.dcloud.HelloH5*/
+                "keystore": "",/*Android应用打包使用的密钥库文件*/
+                "password": "",/*Android应用打包使用密钥库中证书的密码*/
+                "aliasname": "",/*Android应用打包���用密钥库中证书的别名*/
+               "permissions": ["<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>","<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>","<uses-permission android:name=\"android.permission.VIBRATE\"/>","<uses-permission android:name=\"android.permission.READ_LOGS\"/>","<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>","<uses-feature android:name=\"android.hardware.camera.autofocus\"/>","<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>","<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>","<uses-permission android:name=\"android.permission.CAMERA\"/>","<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>","<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>","<uses-permission android:name=\"android.permission.SEND_SMS\"/>","<uses-permission android:name=\"android.permission.INTERNET\"/>","<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>","<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>","<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>","<uses-permission android:name=\"android.permission.CALL_PHONE\"/>","<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>","<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>","<uses-feature android:name=\"android.hardware.camera\"/>","<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>","<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>","<uses-permission android:name=\"android.permission.WRITE_SMS\"/>","<uses-permission android:name=\"android.permission.READ_SMS\"/>"]
+				/*使用Native.js调用原生安卓API需要使用到的系统权限*/
+            },
+            "orientation": [
+                "portrait-primary"
+            ],/*应用支持的方向，portrait-primary：竖屏正方向；portrait-secondary：竖屏反方向；landscape-primary：横屏正方向；landscape-secondary：横屏反方向*/
+            "icons": {
+                "ios": {
+                    "prerendered": true, /*应用图标是否已经高亮处理，在iOS6及以下设备上有效*/
+                     /*应用图标，分辨率：512x512，用于自动生成各种尺寸程序图标*/
+                    "iphone": {
+                        "normal": "", /*iPhone3/3GS程序图标，分辨率：57x57*/
+                        "retina": "", /*iPhone4程序图标，分辨率：114x114*/
+                         /*iPhone4S/5/6程序图标，分辨率：120x120*/
+			 /*iPhone6 Plus程序图标，分辨率：180x180*/
+                        "spotlight-normal": "", /*iPhone3/3GS Spotlight搜索程序图标，分辨率：29x29*/
+                        "spotlight-retina": "", /*iPhone4 Spotlight搜索程序图标，分辨率：58x58*/
+                         /*iPhone4S/5/6 Spotlight搜索程序图标，分辨率：80x80*/
+                        "settings-normal": "", /*iPhone4设置页面程序图标，分辨率：29x29*/
+                         /*iPhone4S/5/6设置页面程序图标，分辨率：58x58*/
+			"app@2x":"unpackage/res/icons/120x120.png","app@3x":"unpackage/res/icons/180x180.png","settings@3x":"unpackage/res/icons/87x87.png","settings@2x":"unpackage/res/icons/58x58.png","spotlight@2x":"unpackage/res/icons/80x80.png","spotlight@3x":"unpackage/res/icons/120x120.png","notification@3x":"unpackage/res/icons/60x60.png","notification@2x":"unpackage/res/icons/40x40.png" /*iPhone6Plus设置页面程序图标，分辨率：87x87*/
+                    },
+                    "ipad": {
+                        "normal": "", /*iPad普通屏幕程序图标，分辨率：72x72*/
+                        "retina": "", /*iPad高分屏程序图标，分辨率：144x144*/
+                         /*iPad iOS7程序图标，分辨率：76x76*/
+                         /*iPad iOS7高分屏程序图标，分辨率：152x152*/
+                        "spotlight-normal": "", /*iPad Spotlight搜索程序图标，分辨率：50x50*/
+                        "spotlight-retina": "", /*iPad高分屏Spotlight搜索程序图标，分辨率：100x100*/
+                        /*iPad iOS7 Spotlight搜索程序图标，分辨率：40x40*/
+                        /*iPad iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*/
+                        /*iPad设置页面程序图标，分辨率：29x29*/
+                        "app":"unpackage/res/icons/76x76.png","app@2x":"unpackage/res/icons/152x152.png","settings":"unpackage/res/icons/29x29.png","proapp@2x":"unpackage/res/icons/167x167.png","spotlight":"unpackage/res/icons/40x40.png","settings@2x":"unpackage/res/icons/58x58.png","spotlight@2x":"unpackage/res/icons/80x80.png","notification":"unpackage/res/icons/20x20.png","notification@2x":"unpackage/res/icons/40x40.png" /*iPad高分屏设置页面程序图标，分辨率：58x58*/
+                    },"appstore":"unpackage/res/icons/1024x1024.png"
+                },
+                "android": {
+                    "mdpi": "unpackage/res/icons/48x48.png", /*普通屏程序图标，分辨率：48x48*/
+                    "ldpi": "unpackage/res/icons/48x48.png", /*大屏程序图标，分辨率：48x48*/
+                    "hdpi": "unpackage/res/icons/72x72.png", /*高分屏程序图标，分辨率：72x72*/
+                    "xhdpi": "unpackage/res/icons/96x96.png",/*720P高分屏程序图标，分辨率：96x96*/
+                    "xxhdpi": "unpackage/res/icons/144x144.png","xxxhdpi":"unpackage/res/icons/192x192.png"/*1080P 高分屏程序图标，分辨率：144x144*/
+                }
+            },
+            "splashscreen": {
+                "ios": {
+                    "iphone": {
+                        "default": "", /*iPhone3启动图片选，分辨率：320x480*/
+                        "retina35": "static/commons/img/qid/mylogo_640x960.png",/*3.5英寸设备(iPhone4)启动图片，分辨率：640x960*/
+                        "retina40": "static/commons/img/qid/mylogo_640x1136.png",/*4.0 英寸设备(iPhone5/iPhone5s)启动图片，分辨率：640x1136*/
+                        "retina47": "static/commons/img/qid/mylogo_750x1334.png",/*4.7 英寸设备(iPhone6)启动图片，分辨率：750x1334*/
+                        "retina55": "static/commons/img/qid/mylogo_1242x2208.png",/*5.5 英寸设备(iPhone6 Plus)启动图片，分辨率：1242x2208*/
+                        "retina55l": "","iphonex":"static/commons/img/qid/mylogo_1125x2436.png"/*5.5 英寸设备(iPhone6 Plus)横屏启动图片，分辨率：2208x1242*/
+                    },
+                    "ipad": {
+                         /*iPad竖屏启动图片，分辨率：768x1004*/
+                        "portrait-retina": "",/*iPad高分屏竖屏图片，分辨率：1536x2008*/
+                        "landscape": "", /*iPad横屏启动图片，分辨率：1024x748*/
+                        "landscape-retina": "", /*iPad高分屏横屏启动图片，分辨率：2048x1496*/
+                        "portrait7": "static/commons/img/qid/mylogo_768x1024.png", /*iPad iOS7竖屏启动图��，分辨率：768x1024*/
+                        "portrait-retina7": "",/*iPad iOS7高分屏竖屏图片，分辨率：1536x2048*/
+                        "landscape7": "", /*iPad iOS7横屏启动图片，分辨率：1024x768*/
+                        "landscape-retina7": ""/*iPad iOS7高分屏横屏启动图片，分辨率：2048x1536*/
+                    }
+                },
+                "android": {
+                    "mdpi": "", /*普通屏启动图片，分辨率：240x282*/
+                    "ldpi": "", /*大屏启动图片，分辨率：320x442*/
+                    "hdpi": "static/commons/img/qid/androidlogo_480x762.png", /*高分屏启动图片，分辨率：480x762*/
+                    "xhdpi": "static/commons/img/qid/androidlogo_720x1242.png", /*720P高分屏启动图片，分辨率：720x1242*/
+                    "xxhdpi": "static/commons/img/qid/androidlogo_1080x1882.png"/*1080P高分屏启动图片，分辨率：1080x1882*/
+                }
+            }
+        }
+    }
 }
