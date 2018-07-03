@@ -1,42 +1,43 @@
-<template>
-	<div class="mui-content">
-		
-		<header class="mui-bar mui-bar-nav">
-		  <button @click="$router.push('/adddialog')" class="mui-btn mui-pull-left">
-		    添加
-		  </button>
-		  <button @click="zlodin" class="mui-btn mui-pull-right">
-		    退出登陆
-		  </button>
-		  <h1 class="mui-title">记事本</h1>
-		</header>
-		<div class="title" >
-            <div class="table">
-                <div class="table-head">
-                    <div class="table-head-cell">名字</div>
-                    <div class="table-head-cell">资料1</div>
-                    <div class="table-head-cell">资料2</div>
-                    <div class="table-head-cell">备注</div>
+  <template>
+    <div class="mui-content">
+      <header class="mui-bar mui-bar-nav">
+        <button @click="$router.push('/adddialog')" class="mui-btn mui-pull-left">
+          添加
+        </button>
+        <button @click="zlodin" class="mui-btn mui-pull-right">
+          退出登陆
+        </button>
+        <h1 class="mui-title">记事本</h1>
+      </header>
+      <div class="title">
+        <div class="table">
+          <div class="table-head">
+              <div class="table-head-cell">名字</div>
+              <div class="table-head-cell">资料1</div>
+              <div class="table-head-cell">资料2</div>
+              <div class="table-head-cell">备注</div>
+          </div>
+          <div class="aout" id="shuzxonsd">
+            <ul class="mui-table-view " v-for="(item,index) in tableData3" :key="index">
+              <li class="mui-table-view-cell">
+                <div  class="mui-slider-right mui-disabled">
+                  <a @click="handleDelete(item)" class="mui-btn mui-btn-red">删除</a>
+                  <a @click="popverbtn(item)" class="mui-btn mui-btn-primary">编辑</a>
                 </div>
-				<div class="aout" id="shuzxonsd">
-					<ul class="mui-table-view " v-for="(item,index) in tableData3" :key="index">
-						<li class="mui-table-view-cell">
-							<div  class="mui-slider-right mui-disabled">
-								<a @click="handleDelete(item)" class="mui-btn mui-btn-red">删除</a>
-								<a @click="popverbtn(item)" class="mui-btn mui-btn-primary">编辑</a>
-							</div>
-							<div class="mui-slider-handle table-body">
-								<div class="table-body-cell">{{item.name}}</div>
-								<div class="table-body-cell">{{item.date}}</div>
-								<div class="table-body-cell">{{item.worde}}</div>
-								<div class="table-body-cell">{{item.address}}</div>
-							</div>
-						</li>
-					</ul>
-                </div> 
-            </div>
+                <div class="mui-slider-handle table-body">
+                  <div class="table-body-cell">{{item.name}}</div>
+                  <div class="table-body-cell">{{item.date}}</div>
+                  <div class="table-body-cell">{{item.worde}}</div>
+                  <div class="table-body-cell">{{item.address}}</div>
+                </div>
+              </li>
+            </ul>
+          </div> 
         </div>
-		
+        <div v-if="tableData3.length>0" style="text-align: center;font-size: 0.24rem; height:40px;line-height:40px;">
+          左滑更多设置！
+        </div>
+    </div>
 	</div>
 </template>
 <script>
@@ -62,8 +63,9 @@ export default {
     };
   },
   mounted() {
+    
     var vm = this;
-    this.rounres(this.$route.path);
+    vm.rounres(this.$route.path);
     vm.ajaxqurt();
   },
   watch: {
@@ -107,8 +109,18 @@ export default {
       });
     },
     zlodin() {
-      localStorage.setItem("zidong", "");
-      this.$router.push("/");
+
+        var v = this;
+      var btnArray = ["确认", "取消"];
+      mui.confirm("确认退出登录？", "提示！", btnArray, function(e) {
+        if (e.index == 0) {
+          localStorage.setItem("zidong", "");
+          v.$router.push("/");
+        }
+      });
+
+
+      
     },
     popverbtn(item) {
       this.$router.push({
@@ -118,6 +130,7 @@ export default {
     },
     ajaxqurt() {
       var v = this;
+      console.log('111111')
       v.$ajax({
         data: {
           s: "App.User_Set.GetList", // 待请求的接口服务名称
@@ -133,7 +146,8 @@ export default {
             if (r.data.err_code == "0") {
               var tableData3 = r.data.items;
               v.total = r.data.total;
-
+              console.log(r.data)
+              
               var dates = [];
               for (var i = 0; i < tableData3.length; i++) {
                 tableData3[i].data.id = tableData3[i].id;
@@ -168,7 +182,6 @@ export default {
         }
       });
     },
-
     dtuichu() {
       this.$router.push("/");
     },
@@ -219,6 +232,7 @@ export default {
 <style scoped>
 .title {
   margin-top: 44px;
+  text-align: center;
 }
 
 .table {
@@ -252,6 +266,7 @@ export default {
 .table-body-cell {
   width: 25%;
   font-size: 0.22rem;
+  
 }
 .popr_conter {
   width: 5rem;

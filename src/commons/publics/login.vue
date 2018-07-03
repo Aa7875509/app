@@ -79,18 +79,49 @@
 					} 
 				} 
 			};
-			 this.myurlimg()
+			 vm.newest()
 			 if(localStorage.getItem('zidong')=='12'){
                this.$router.push('/menus')
+			 }else{
+				 this.myurlimg()
 			 }
 			 
 			 
 			
 		},
 		methods: {
-		    
-        submitForm() {
+		    newest(){
+				var vm=this;
+				 $.ajax({
+					url: "https://www.pgyer.com/apiv2/app/builds",
+					type:"POST",
+					data: {
+					_api_key: "5110ab595d644a80604285f0cf3edacb",
+					appKey:'8f22df8257cbba881e95a6b01daa3cee'
+					},
+					success: function(r) {
+						var wgtVer;
+						  var b=r.data.list[0].buildVersion;
+						 plus.runtime.getProperty(plus.runtime.appid,function(inf){
+							  wgtVer=inf.version;
+							if(wgtVer==b){
+							}else{
+								 var v = this;
+								var btnArray = ["确认", "取消"];
+								mui.confirm("有最新版本确认更新？", "提示！", btnArray, function(e) {
+									if (e.index == 0) {
+										var wgtUrl="https://www.pgyer.com/apiv2/app/install?appKey=8f22df8257cbba881e95a6b01daa3cee&_api_key=5110ab595d644a80604285f0cf3edacb";
+										plus.runtime.openURL(wgtUrl);
+									}
+								});
+								
+							}
+						});
+					}
+				})
+			},
 			
+        submitForm() {
             const v = this;
 			if(!v.ruleForm.name){
                 return mui.toast('账号不能为空',{ duration:'long', type:'div' })
@@ -195,5 +226,14 @@
 		right: 30px;
 		height: 39px;
 		width: 100px;
+	}
+
+		.content_img img{
+			display: block;
+			margin: 0 auto;
+		}
+	.link-area{
+		
+		text-align: center;
 	}
 </style>

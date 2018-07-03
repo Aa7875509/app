@@ -23,7 +23,48 @@ function enryptData(params) {
 
     return params;
 }
-
+Vue.prototype.$api = function (options) {
+    if(!window.navigator.onLine){
+        this.$alert('您的网络已经断开', '提示', {
+            confirmButtonText: '确定',
+          });
+          return
+    }
+    return $.ajax({
+        url:options.url, //--dev-context--
+        xhrFields: {
+            withCredentials: true
+        },
+        traditional: true,
+        //url: localStorage.getItem("url") + "/" + options.url,//--test-context--
+        type: options.type,
+        traditional: true,
+        dataType: 'json',
+        data: options.data,
+        success: options.success,
+        error: options.error,
+      })
+}
+Vue.prototype.$wsk = function (options) {
+    if(!window.navigator.onLine){
+        this.$alert('您的网络已经断开', '提示', {
+            confirmButtonText: '确定',
+          });
+          return
+    }
+           var v=this;
+            var ws = new WebSocket(options.url);
+            ws.addEventListener('open', function (event) {
+            
+                ws.send(JSON.stringify(options));
+            });
+            ws.onopen = function(evt){
+            };
+            ws.onmessage =options.success;
+            ws.onclose = function(evt) {
+            
+            };
+}
 Vue.prototype.$ajax = function (params) {
     if(!window.navigator.onLine){
         this.$alert('您的网络已经断开', '提示', {

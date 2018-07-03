@@ -4,6 +4,7 @@ import login from '@/commons/publics/login'
 import menus from '@/components/menus.vue'
 import card from '@/components/menus/index'
 import index from '@/components/menus/card'
+import mine from '@/components/menus/mine'
 import adddialog from '@/components/menus/adddialog'
 import editdialog from '@/components/menus/editdialog'
 import register from '@/components/menus/register'
@@ -31,12 +32,12 @@ export default new Router({
           name: 'card',
           component: card
         },
-        // {
-        //   path: '/mine',
-        //   name: 'mine',
-        //   component: mine,
+        {
+          path: '/mine',
+          name: 'mine',
+          component: mine,
 
-        // },
+        },
         // {
         //   path: '/share',
         //   name: 'share',

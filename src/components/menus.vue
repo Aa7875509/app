@@ -4,25 +4,20 @@
       <div class="ct">
           <router-view></router-view>
       </div>
-      <div class="mui-bar mui-bar-tab">
-			    <span  class="mui-tab-item mui-active" @click="indexBtn">
+      <div class="muitab">
+         <span  class="tab-item mui-active" :class="tuei=='jsb'?'active':''" @click="indexBtn">
 			        <span class="mui-icon mui-icon-compose"></span>
-			        <span class="mui-tab-label">记事本</span>
+			        <span class="label">记事本</span>
 			    </span>
-			    <span class="mui-tab-item" @click="cardsBtn">
-			        
+			    <span class="tab-item" :class="tuei=='lts'?'active':''" @click="cardsBtn">
               <span class="mui-icon mui-icon-chatbubble"></span>
-			        <span class="mui-tab-label">聊天室</span>
+			        <span class="label">聊天室</span>
 			    </span>
-			    <!-- <a class="mui-tab-item">
-			        <span class="mui-icon mui-icon-email"></span>
-			        <span class="mui-tab-label">邮件</span>
-			    </a>
-			    <a class="mui-tab-item">
-			        <span class="mui-icon mui-icon-gear"></span>
-			        <span class="mui-tab-label">设置</span>
-			    </a> -->
-			</div>
+           <span class="tab-item" :class="tuei=='bz'?'active':''" @click="mineBtn">
+              <span class="mui-icon mui-icon-starhalf"></span>
+			        <span class="label">快递</span>
+			    </span>
+      </div>
     </div>
     <!-- 底部菜单 -->
   </div>
@@ -31,7 +26,9 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      tuei:'jsb',
+    };
   },
   mounted() {
     this.rounres(this.$route.path);
@@ -44,17 +41,17 @@ export default {
   },
   methods: {
     indexBtn() {
+      this.tuei='jsb';
       this.$router.push("/index");
     },
     cardsBtn() {
+      this.tuei='lts';
       this.$router.push("/card");
     },
-    // shareBtn() {
-    //   this.$router.push("/share");
-    // },
-    // mineBtn() {
-    //   this.$router.push("/mine");
-    // },
+    mineBtn() {
+       this.tuei='bz';
+      this.$router.push("/mine");
+    },
     rounres(date) {
       if (date == "/mine") {
         this.panduan();
@@ -100,5 +97,55 @@ export default {
 };
 </script>
 <style scoped>
+.muitab{
+       position: fixed;
+    z-index: 10;
+    right: 0;
+    left: 0;
+    background-color: #f7f7f7;
+    backface-visibility: hidden;
+    bottom: 0;
+    display: table;
+    width: 100%;
+    height: 45px;
+    padding: 0;
+    table-layout: fixed;
+    border-top: 0;
+    border-bottom: 0;
+}
+.tab-item{
+      display: table-cell;
+    overflow: hidden;
+    width: 1%;
+    height: 45px;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.tab-item .mui-icon {
+    top: 3px;
+    width: 24px;
+    height: 24px;
+    padding-top: 0;
+    padding-bottom: 0;
+}
 
+
+.muitab .mui-icon {
+    font-size: 24px;
+    position: relative;
+    z-index: 20;
+    padding-top: 3px;
+    padding-bottom: 10px;
+}
+.tab-item .mui-icon~.label {
+    font-size: 11px;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.active{
+      color: #007aff;
+}
 </style>
