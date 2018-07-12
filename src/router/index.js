@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import login from '@/commons/publics/login'
 import menus from '@/components/menus.vue'
 import card from '@/components/menus/index'
+import share from '@/components/menus/share'
 import index from '@/components/menus/card'
 import mine from '@/components/menus/mine'
 import adddialog from '@/components/menus/adddialog'
@@ -38,11 +39,11 @@ export default new Router({
           component: mine,
 
         },
-        // {
-        //   path: '/share',
-        //   name: 'share',
-        //   component: share
-        // },
+        {
+          path: '/share',
+          name: 'share',
+          component: share
+        },
       ]
     },{
       path: '/adddialog',

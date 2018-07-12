@@ -17,6 +17,10 @@
               <span class="mui-icon mui-icon-starhalf"></span>
 			        <span class="label">快递</span>
 			    </span>
+           <span class="tab-item" :class="tuei=='share'?'active':''" @click="shareBtn">
+              <span class="mui-icon mui-icon mui-icon-locked"></span>
+			        <span class="label">假币</span>
+			    </span>
       </div>
     </div>
     <!-- 底部菜单 -->
@@ -52,6 +56,10 @@ export default {
        this.tuei='bz';
       this.$router.push("/mine");
     },
+    shareBtn() {
+       this.tuei='share';
+      this.$router.push("/share");
+    },
     rounres(date) {
       if (date == "/mine") {
         this.panduan();
@@ -63,6 +71,9 @@ export default {
         this.panduan();
       }
       if (date == "/index") {
+        this.panduan();
+      }
+      if (date == "/share") {
         this.panduan();
       }
     },
